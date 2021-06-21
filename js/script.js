@@ -12,8 +12,14 @@ project 1 - A Random Quote Generator
 ***/
 const quotes = [
   {
+    quote: "Always, always seek mystery. Small minds sit in answers. Great minds sit in questions.",
+    source: "Zan Perrion",
+    citation: "The Alabaster Girl (Book)"
+  },
+  {
     quote: "Follow the love in your heart - not the stress in your head.",
-    source: "Pari"
+    source: "Pari",
+    year: "2020"
   },
   {
     quote: "Modern people can't see god because they don't look low enough.",
@@ -40,10 +46,6 @@ const quotes = [
     source: "Rumi"
   },
   {
-    quote: "Always, always seek mystery. Small minds sit in answers. Great minds sit in questions.",
-    source: "Zan Perrion"
-  },
-  {
     quote: "Wealth is the ability to fully experience life.",
     source: "Thoreau"
   }
@@ -53,7 +55,13 @@ console.log(quotes);
 /***
  * `getRandomQuote` function
 ***/
-
+function getRandomQuotes() {
+  const randomNumber = Math.floor(Math.random() * quotes.length);
+  console.log("randomNumber: ", randomNumber);
+  console.log("random quote: ", quotes[randomNumber]);
+  return quotes[randomNumber];
+}
+getRandomQuotes();
 
 
 /***
