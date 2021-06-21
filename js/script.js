@@ -1,25 +1,22 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
+// ************************************
+// Treehouse FSJS Techdegree:
+// project 1 - A Random Quote Generator
+// ************************************
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-/*** 
- * `quotes` array 
-***/
+// Array with my selected quotes:
 const quotes = [
   {
     quote: "Always, always seek mystery. Small minds sit in answers. Great minds sit in questions.",
     source: "Zan Perrion",
-    citation: "The Alabaster Girl (Book)"
+    alive: true,
+    citation: "The Alabaster Girl (Book)",
   },
   {
     quote: "Follow the love in your heart - not the stress in your head.",
     source: "Pari",
-    year: "2020"
+    alive: true,
+    year: "2020",
+    tag: "wisdom"
   },
   {
     quote: "Modern people can't see god because they don't look low enough.",
@@ -27,66 +24,92 @@ const quotes = [
   },
   {
     quote: "A teacher has answers to question. A coach has questions to answers.",
-    source: "Arjuna Ardagh"
+    source: "Arjuna Ardagh",
+    alive: true
   },
   {
     quote: "The key to freedom? End every judgment with a question mark.",
-    source: "Byron Katie"
+    source: "Byron Katie",
+    alive: true
   },
   {
     quote: "The things that matter most should never be at the mercy of the things that matter least.",
-    source: "Johann Wolfgang von Goethe"
+    source: "Johann Wolfgang von Goethe",
+    alive: false
   },
   {
     quote: "Simplicity is the ultimate sophistication.",
-    source: "Leonardo da Vinci"
+    source: "Leonardo da Vinci",
+    alive: false
   },
   {
     quote: "Set your life on fire. Seek those who fan your flames.",
-    source: "Rumi"
+    source: "Rumi",
+    alive: false
   },
   {
     quote: "Wealth is the ability to fully experience life.",
-    source: "Thoreau"
+    source: "Thoreau",
+    alive: false
   }
 ];
-console.log(quotes);
+console.log("quotes: ", quotes); // logging the array to the console to check
 
-/***
- * `getRandomQuote` function
-***/
+// Array with some colors (for the randomBackgroundColor function):
+colors = ["#6495ED", "#FF7F50", "#D2691E", "#008B8B", "#8B0000", "#00CED1", "#4B0082", "#FFA07A", "#DB7093", "#008080"];
+console.log("colors: ", colors)
+
+// Function for getting a random qoute:
 function getRandomQuotes() {
   const randomNumber = Math.floor(Math.random() * quotes.length);
   console.log("randomNumber: ", randomNumber);
   console.log("random quote: ", quotes[randomNumber]);
   return quotes[randomNumber];
 }
-getRandomQuotes();
+getRandomQuotes(); // calling the function to check it's working -> NOT selecting the first quote yet!
 
 
-/***
- * `printQuote` function
-***/
+// Function for printing a quote to the page:
 function printQuote() {
+  // Call the function for setting a random background color:
+  randomBackgroundColor();
+  // Get a random quote and store it in a variable:
   const randomQuote = getRandomQuotes();
+  // Create an empty string for the html content of the quote:
   let htmlString = "";
+  // Add the quote text as a <p> element:
   htmlString += `<p class="quote">${randomQuote.quote}</p>`;
+  // Add the quote source as a <p> element (no closing </p> tag yet!)
   htmlString += `<p class="source">${randomQuote.source}`;
+  // Check if the source is still alive (if yes, add this info):
+  if (randomQuote.alive) {
+    htmlString += `<span> (alive)</span>`
+  }
+  // Check if there is a citation property for the quote (if yes, add it):
   if (randomQuote.citation) {
     htmlString += `<span>, ${randomQuote.citation}</span>`
   }
+  // Check if there is a source property for the quote (if yes, add it):
   if (randomQuote.year) {
     htmlString += `<span>, ${randomQuote.year}</span>`
   }
+  // Add the closing </p> tag:
   htmlString += "</p>";
-  console.log(htmlString);
+  console.log("htmlString: ", htmlString); // just a log for testing
+  // Display the html content in the quote-box id of the page:
   document.getElementById('quote-box').innerHTML = htmlString;
 }
-printQuote();
+printQuote(); // Call the function for the start
 
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
+// Function for setting a random background color:
+function randomBackgroundColor() {
+  const randomNumber = Math.floor(Math.random() * colors.length);
+  const randomColor = colors[randomNumber];
+  console.log("randomColor: ", randomColor);
+  document.querySelector("body").style.backgroundColor = randomColor;
+}
 
+// Click event listener for the print quote button
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+setInterval(printQuote, 10000);
