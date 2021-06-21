@@ -60,13 +60,13 @@ colors = ["#6495ED", "#FF7F50", "#D2691E", "#008B8B", "#8B0000", "#00CED1", "#4B
 console.log("colors: ", colors)
 
 // Function for getting a random qoute:
-function getRandomQuotes() {
+function getRandomQuote() {
   const randomNumber = Math.floor(Math.random() * quotes.length);
   console.log("randomNumber: ", randomNumber);
   console.log("random quote: ", quotes[randomNumber]);
   return quotes[randomNumber];
 }
-getRandomQuotes(); // calling the function to check it's working -> NOT selecting the first quote yet!
+getRandomQuote(); // calling the function to check it's working -> NOT selecting the first quote yet!
 
 
 // Function for printing a quote to the page:
@@ -74,7 +74,7 @@ function printQuote() {
   // Call the function for setting a random background color:
   randomBackgroundColor();
   // Get a random quote and store it in a variable:
-  const randomQuote = getRandomQuotes();
+  const randomQuote = getRandomQuote();
   // Create an empty string for the html content of the quote:
   let htmlString = "";
   // Add the quote text as a <p> element:
@@ -87,11 +87,11 @@ function printQuote() {
   }
   // Check if there is a citation property for the quote (if yes, add it):
   if (randomQuote.citation) {
-    htmlString += `<span>, ${randomQuote.citation}</span>`
+    htmlString += `<span class="citation">${randomQuote.citation}</span>`
   }
   // Check if there is a source property for the quote (if yes, add it):
   if (randomQuote.year) {
-    htmlString += `<span>, ${randomQuote.year}</span>`
+    htmlString += `<span class="year">${randomQuote.year}</span>`
   }
   // Add the closing </p> tag:
   htmlString += "</p>";
