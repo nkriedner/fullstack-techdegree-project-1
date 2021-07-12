@@ -1,4 +1,4 @@
-# fullstack-techdegree-project-1
+# Random Quote Generator
 
 This project is the first project task for Teamtreehouse's "Fullstack JavaScript Techdegree".
 
